@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+{% block title %}
+    Update Post
+{%endblock%}
+
+{% block content %}
+    {% if request.user.is_authenticated%}
+    <form action="{{ post.get_update_url }}" method="post">
+      {% csrf_token %}
+      {% for field in form%}
+        <div class="form-group mb-3">
+            {{ field.label }}
+            {{field}}
+        </div>
+      {% endfor %}
+      <button type="submit">Save</button>
+    </form>
+    {% endif %}
+{%endblock%}
+
+
